@@ -12,7 +12,7 @@ const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const {
-    data: movies,
+    data: movies = [],
     loading: moviesLoading,
     error: moviesError,
     refetch: loadMovies,
@@ -20,19 +20,16 @@ const Search = () => {
   } = useFetch(() => fetchMovies({ query: searchQuery }), false);
 
   useEffect(() => {
-
-    console.log('====================================');
-    console.log(1);
-    console.log('====================================');
-
-    console.log('====================================');
-    console.log(2);
-    console.log('====================================');
-    
     const timeOutId = setTimeout(async () => {
-      updateSearchCount(searchQuery,movies[0]);
       if (searchQuery.trim()) {
         await loadMovies();
+
+        console.log(movies[0]);
+        
+
+        if (movies?.length > 0 && movies?.[0]) {
+          updateSearchCount(searchQuery, movies[0]);
+        }
       } else {
         reset();
       }
