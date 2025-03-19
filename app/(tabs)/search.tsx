@@ -25,13 +25,12 @@ const Search = () => {
     console.log(1);
     console.log('====================================');
 
-    updateSearchCount(searchQuery,movies[0]);
-
     console.log('====================================');
     console.log(2);
     console.log('====================================');
-
+    
     const timeOutId = setTimeout(async () => {
+      updateSearchCount(searchQuery,movies[0]);
       if (searchQuery.trim()) {
         await loadMovies();
       } else {
